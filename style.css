@@ -1,0 +1,17 @@
+main {
+  display: flex;
+  align-items: center;
+  height: 90vh;
+}
+
+.left {
+  background-color: pink;
+  width: 30%;
+  height: 100%;
+}
+
+.right {
+  background-color: palegreen;
+  width: 70%;
+  height: 100%;
+}
