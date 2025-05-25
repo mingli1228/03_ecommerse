@@ -1,17 +1,19 @@
+body {
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 main {
   display: flex;
   align-items: center;
-  height: 90vh;
+  height: 90%;
+  width: 100%;
 }
 
-.left {
-  background-color: pink;
-  width: 30%;
-  height: 100%;
-}
-
-.right {
-  background-color: palegreen;
-  width: 70%;
-  height: 100%;
+footer {
 }
