@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Diary</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Yomogi&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-
-    <title>Emoji Diary</title>
 </head>
 
 <body>
     <header>
-        <h1>Emoji Diary</h1>
+        <h1>Stamp Diary</h1>
     </header>
     <main>
         <table id="calendar">
-            <thread>
+            <thead>
                 <tr>
                     <td>日</td>
                     <td>月</td>
@@ -27,14 +28,93 @@
                     <td>金</td>
                     <td>土</td>
                 </tr>
-            </thread>
+            </thead>
             <tbody id="calendarBody"></tbody>
         </table>
-
-
-
     </main>
-    <footer>Emoji Diary ©️ All rights reserved.</footer>
+
+    <div id="stampPalette"
+        style="display:none; position:absolute; background:#fff; border:1px solid #ccc; padding:10px; border-radius:8px; max-width:320px; box-shadow: 0 0 10px rgba(0,0,0,0.1); font-size: 24px;">
+        <div><strong>🩺 健康・体調・生活習慣</strong></div>
+        <span class="emoji">💊</span>
+        <span class="emoji">🤒</span>
+        <span class="emoji">🤧</span>
+        <span class="emoji">🤕</span>
+        <span class="emoji">🏥</span>
+        <span class="emoji">🩻</span>
+        <span class="emoji">🛌</span>
+        <span class="emoji">🚶‍♀️</span>
+        <span class="emoji">🧘‍♂️</span>
+        <span class="emoji">🚭</span>
+        <hr />
+        <div><strong>🧾 家事・生活タスク</strong></div>
+        <span class="emoji">🗑</span>
+        <span class="emoji">🧺</span>
+        <span class="emoji">🧹</span>
+        <span class="emoji">🛒</span>
+        <span class="emoji">🍳</span>
+        <span class="emoji">🧽</span>
+        <span class="emoji">💸</span>
+        <span class="emoji">🧾</span>
+        <span class="emoji">📦</span>
+        <span class="emoji">🪴</span>
+        <hr />
+        <div><strong>🎓 学習・仕事・スキルアップ</strong></div>
+        <span class="emoji">📚</span>
+        <span class="emoji">📝</span>
+        <span class="emoji">🧠</span>
+        <span class="emoji">📖</span>
+        <span class="emoji">💻</span>
+        <span class="emoji">🗂</span>
+        <span class="emoji">📅</span>
+        <span class="emoji">🧪</span>
+        <span class="emoji">🖊</span>
+        <span class="emoji">💬</span>
+        <hr />
+        <div><strong>🎉 プライベート・レジャー</strong></div>
+        <span class="emoji">🎬</span>
+        <span class="emoji">📺</span>
+        <span class="emoji">🎮</span>
+        <span class="emoji">🎵</span>
+        <span class="emoji">🧑‍🤝‍🧑</span>
+        <span class="emoji">💌</span>
+        <span class="emoji">📷</span>
+        <span class="emoji">📍</span>
+        <span class="emoji">🧳</span>
+        <span class="emoji">🛍</span>
+        <hr />
+        <div><strong>🍔 食事・グルメ記録</strong></div>
+        <span class="emoji">🍛</span>
+        <span class="emoji">🍜</span>
+        <span class="emoji">🍕</span>
+        <span class="emoji">🍔</span>
+        <span class="emoji">🍞</span>
+        <span class="emoji">🍱</span>
+        <span class="emoji">🥗</span>
+        <span class="emoji">🍣</span>
+        <span class="emoji">🍩</span>
+        <span class="emoji">☕️</span>
+        <hr />
+        <div><strong>😊 気分・感情</strong></div>
+        <span class="emoji">😀</span>
+        <span class="emoji">😭</span>
+        <span class="emoji">😡</span>
+        <span class="emoji">😌</span>
+        <span class="emoji">😴</span>
+        <span class="emoji">😍</span>
+        <span class="emoji">😫</span>
+        <span class="emoji">🤩</span>
+        <span class="emoji">🤔</span>
+        <span class="emoji">😤</span>
+        <hr />
+        <span class="emoji">× スタンプ削除</span>
+        <span class="emoji"><img
+                src="https://emoji.slack-edge.com/T08GVDVP4KZ/%25E3%2582%2582%25E3%2581%258F%25E3%2582%2582%25E3%2581%258F/2e9710c137566807.png"
+                alt=""></span>
+
+    </div>
+
+    <footer>Emoji Diary © All rights reserved.</footer>
     <script src="main.js"></script>
 </body>
 

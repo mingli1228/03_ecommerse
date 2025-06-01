@@ -1,50 +1,97 @@
-// 1.ブラウザを開いた時点の年月日と曜日を取得
 const today = new Date();
-let year = today.getFullYear();
-let month = today.getMonth();
-let date = today.getDate();
-// 日曜日＝0,月曜日=1
-let weekday = today.getDay();
+let currentYear = today.getFullYear();
+let currentMonth = today.getMonth();
 
-// 2.取得した年月日を含む月のカレンダーを表示する！
-// テーブルにプロットする前に配列化
-// 2-1.まずはその月の「最初の日が何曜日か」「最後の日が何日か←配列をどこまで続けるか」調べる
-const firstDay = new Date(year, month, 1).getDay();
-// 翌月の0日目＝当月の月末
-const lastDate = new Date(year, month + 1, 0).getDate();
-console.log(firstDay, lastDate);
+function renderCalendar(year, month) {
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month + 1, 0).getDate();
 
-// nullNam=nullが何個続くか。1日が火曜日なら、null=2.7で割った余り。
-let days = [];
-for (let i = 0; i < firstDay; i++) {
-  days.push(null);
-}
-for (let i = 1; i <= lastDate; i++) {
-  days.push(i);
-}
-console.log(days);
+  let days = [];
+  for (let i = 0; i < firstDay; i++) days.push(null);
+  for (let i = 1; i <= lastDate; i++) days.push(i);
 
-// カレンダーを7日で改行する
-for (let i = 0; i < days.length; i += 7) {
-  const week = days.slice(i, i + 7);
-  let rowHtml = "<tr>";
+  const monthTitle = `${year}年${month + 1}月`;
+  $("#calendarBody").append(
+    `<tr><td colspan='7' class='month-title'>${monthTitle}</td></tr>`
+  );
 
-  week.forEach((day) => {
-    if (day === null) {
-      rowHtml += "<td></td>";
-    } else {
-      rowHtml += `<td>${day}</td>`;
+  for (let i = 0; i < days.length; i += 7) {
+    const week = days.slice(i, i + 7);
+    let rowHtml = "<tr>";
+    week.forEach((day) => {
+      if (day === null) {
+        rowHtml += "<td></td>";
+      } else {
+        let paddedMonth = String(month + 1).padStart(2, "0");
+        let paddedDay = String(day).padStart(2, "0");
+        let eachId = `${year}-${paddedMonth}-${paddedDay}`;
+        rowHtml += `
+      <td>
+        <div class="dayBlock">
+          <div class="eachCell date">${day}</div>
+          <div class="eachCell emojiSlot" id="${eachId}_1"></div>
+          <div class="eachCell emojiSlot" id="${eachId}_2"></div>
+          <div class="eachCell emojiSlot" id="${eachId}_3"></div>
+        </div>
+      </td>
+    `;
+      }
+    });
+    rowHtml += "</tr>";
+    $("#calendarBody").append(rowHtml);
+  }
+
+  // 絵文字復元
+  $(".emojiSlot").each(function () {
+    const id = $(this).attr("id");
+    const savedEmoji = localStorage.getItem(id);
+    if (savedEmoji) {
+      $(this).text(savedEmoji);
     }
   });
-  rowHtml += "</tr>";
-  $("#calendarBody").append(`${rowHtml}`);
 }
-// めも。appendは+=と似てる！！
 
-// 2*2のセルの準備。まずはidを配列で生成する。
-let baseId = `${year}-${month + 1}-${date}_`;
-for (let i = 1; i < 4; i++) {
-  let id = `${baseId}${i}`;
-  console.log(id);
-}
-// 続きはstringからやること。
+// 初回描画
+renderCalendar(currentYear, currentMonth);
+
+// スクロール検知で次月描画
+$(window).on("scroll", function () {
+  if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+    renderCalendar(currentYear, currentMonth);
+  }
+});
+
+// スタンプパレット
+$(document).on("click", ".emojiSlot", function (e) {
+  const clickedCell = $(this);
+  $("#stampPalette")
+    .css({ top: e.pageY, left: e.pageX, display: "block" })
+    .data("target", clickedCell);
+});
+
+$(document).on("click", ".emoji", function () {
+  const content = $(this).html(); // ← .text() から .html() に変更
+  const targetCell = $("#stampPalette").data("target");
+  const id = targetCell.attr("id");
+
+  if (content === "× スタンプ削除") {
+    targetCell.html("");
+    localStorage.removeItem(id);
+  } else {
+    targetCell.html(content); // ← .text() から .html() に変更
+    localStorage.setItem(id, content);
+  }
+  $("#stampPalette").hide();
+});
+
+// パレット外クリックで非表示
+$(document).on("click", function (e) {
+  if (!$(e.target).closest(".emojiSlot, #stampPalette").length) {
+    $("#stampPalette").hide();
+  }
+});
