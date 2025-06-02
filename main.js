@@ -21,8 +21,18 @@ function renderCalendar(year, month) {
   for (let i = 1; i <= lastDate; i++) days.push(i);
 
   // 月タイトル行を追加
-  let titleRow = `<tr><th class="month-title" colspan="7">${monthTitle}</th></tr>`;
-  $("#calendarBody").append(titleRow);
+
+  // let titleRow = `<tr><th class="month-title" colspan="7">${monthTitle}</th></tr>`;
+  // $("#calendarBody").append(titleRow);
+
+  let titleRow = "";
+  if (titleRow === `${currentYear}年${currentMonth}月`) {
+    let titleRow = `<tr><th class="month-title" colspan="7"><a name=#top>${monthTitle}</a></th></tr>`;
+    $("#calendarBody").append(titleRow);
+  } else {
+    let titleRow = `<tr><th class="month-title" colspan="7">${monthTitle}</th></tr>`;
+    $("#calendarBody").append(titleRow);
+  }
 
   // 曜日行を追加
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -103,7 +113,7 @@ $(document).on("click", ".emoji", function () {
   const targetCell = $("#stampPalette").data("target");
   const id = targetCell.attr("id");
 
-  if (content === "×スタンプ削除") {
+  if (content === "×スタンプ削除/閉じる") {
     targetCell.html("");
     localStorage.removeItem(id);
   } else {

@@ -2,8 +2,8 @@
 
 body {
   font-family: "Kosugi Maru", "M PLUS Rounded 1c", sans-serif;
-  background-color: turquoise;
-  color: #444;
+  background-color: #f5f7fa;
+  color: #333;
   margin: 0;
   padding: 4rem 0 0 0;
   font-size: 16px;
@@ -15,8 +15,8 @@ body {
 
 header,
 footer {
-  background-color: rgb(52, 142, 133);
-  color: #e5e5e5;
+  background-color: #4aae9b;
+  color: white;
   text-align: center;
   display: flex;
   align-items: center;
@@ -36,8 +36,8 @@ header {
 }
 
 .footer {
-  background-color: rgb(52, 142, 133);
-  color: #e5e5e5;
+  background-color: #4aae9b;
+  color: white;
   text-align: center;
   display: flex;
   align-items: center;
@@ -62,14 +62,14 @@ header {
 
 #calendar thead td {
   font-size: 0.9rem;
-  background-color: rgb(184, 244, 238);
+  background-color: #4aae9b;
   margin: 1rem;
   text-align: center;
 }
 
 #calendar td {
   background-color: #ffffff;
-  border: 1px solid turquoise;
+  border: 1px solid #4aae9b;
   aspect-ratio: 1 / 1;
   padding: 0;
 }
@@ -84,7 +84,7 @@ header {
 }
 
 .eachCell {
-  background-color: rgb(184, 244, 238);
+  background-color: #e8f5e9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,7 +96,7 @@ header {
 }
 
 .emojiSlot {
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -105,9 +105,9 @@ header {
 }
 
 .emojiSlot:hover {
-  background-color: #f1eeee;
+  background-color: lightpink;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .emojiSlot img {
@@ -162,7 +162,7 @@ header {
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
-  background: rgb(184, 244, 238);
+  background: #e8f5e9;
   color: #444;
   padding: 10px;
 }
