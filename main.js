@@ -67,7 +67,7 @@ function renderCalendar(year, month) {
     $("#calendarBody").append(rowHtml);
   }
 
-  // ローカルストレージから絵文字復元
+  // ローカルストレージから絵文字復元！！
   $(".emojiSlot").each(function () {
     const id = $(this).attr("id");
     const savedEmoji = localStorage.getItem(id);

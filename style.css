@@ -105,7 +105,7 @@ header {
 }
 
 .emojiSlot:hover {
-  background-color: lightpink;
+  background-color: rgb(249, 223, 227);
   cursor: pointer;
   border-radius: 15px;
 }
